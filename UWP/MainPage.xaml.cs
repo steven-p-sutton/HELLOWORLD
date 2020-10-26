@@ -37,7 +37,7 @@ namespace UWP
             Windows.Media.SpeechSynthesis.SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("Hello World");
             mediaElement.SetSource(stream, stream.ContentType);
             mediaElement.Play();
-            displayMessageAsync("Hello World", "'Hello World'", string.Empty);
+            await displayMessageAsync("Hello World", "'Hello World'", string.Empty);
         }
 
         //Stackoverflow Exampe of Dialog Box
