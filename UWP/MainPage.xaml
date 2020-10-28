@@ -1,8 +1,8 @@
 ﻿<!-- 
     Based on tutorial
     https://docs.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-uwp?view=vs-2019
--->   
-    <Page
+-->
+<Page
     x:Class="UWP.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -13,17 +13,27 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
         d:DesignWidth="3436.963" 
         d:DesignHeight="1674.467">
+    
+    <Page.Resources>
+        <Style x:Key="Style1" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Lucida Sans Unicode"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontSize" Value="21"/>
+            <Setter Property="Foreground" Value="Yellow"/>
+        </Style>
+        <Style x:Key="Style2" TargetType="Button">
+            <Setter Property="FontFamily" Value="Lucida Sans Unicode"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="HotPink"/>
+        </Style>
+    </Page.Resources>
 
-    <Grid Background="Transparent">
-        <Button x:Name="button" 
-                IsEnabled="True" 
-                Visibility="Visible" 
-                Content="Hello World" 
-                HorizontalAlignment="Left" 
-                Margin="120,98,0,510" 
-                VerticalAlignment="Stretch" 
-                Click="Button_Click" 
-                Height="34" 
-                Width="132"/>
-    </Grid>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <!-- Bind our x class variable on the cs page to the TextBlock -->
+        <TextBlock x:Name="textAppName" 
+                   Text="{x:Bind _Salutation, Mode=OneWay}" 
+                   TextWrapping="Wrap"
+                   Style="{StaticResource Style1}"/>
+    </StackPanel>
 </Page>
