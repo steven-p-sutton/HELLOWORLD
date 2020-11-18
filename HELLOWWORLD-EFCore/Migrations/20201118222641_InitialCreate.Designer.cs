@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HELLOWWORLD_EFCore.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20201118181403_InitialCreate")]
+    [Migration("20201118222641_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
