@@ -33,30 +33,25 @@ namespace HELLOWWORLD_EFCore
             using (var db = new Context())
             {
                 // Create
-                Console.WriteLine("Inserting a new blog");
-                db.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
+                Console.WriteLine("Inserting a new message");
+                db.Add(new HelloWorld { Text = "Hello World !" });
                 db.SaveChanges();
 
                 // Read
-                Console.WriteLine("Querying for a blog");
-                var blog = db.Blogs
-                    .OrderBy(b => b.BlogId)
+                Console.WriteLine("Querying for a message");
+                var helloWorld = db.HelloWorlds
+                    .OrderBy(h => h.HelloWorldId)
                     .First();
+                Console.WriteLine(helloWorld.Text);
 
                 // Update
                 Console.WriteLine("Updating the blog and adding a post");
-                blog.Url = "https://devblogs.microsoft.com/dotnet";
-                blog.Posts.Add(
-                    new Post
-                    {
-                        Title = "Hello World",
-                        Content = "I wrote an app using EF Core!"
-                    });
+                helloWorld.Text = "Hello Again World !";
                 db.SaveChanges();
 
                 // Delete
                 Console.WriteLine("Delete the blog");
-                db.Remove(blog);
+                db.Remove(helloWorld);
                 db.SaveChanges();
             }
         }
