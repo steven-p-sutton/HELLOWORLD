@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace HELLOWWORLD_EFCore
 {
     public class Blog
     {
         public int BlogId { get; set; }
-        public string Name { get; set; }
+        public string Url { get; set; }
 
-        public virtual List<Post> Posts { get; set; }
+        public List<Post> Posts { get; } = new List<Post>();
     }
+
     public class Post
     {
         public int PostId { get; set; }
@@ -18,6 +18,6 @@ namespace HELLOWWORLD_EFCore
         public string Content { get; set; }
 
         public int BlogId { get; set; }
-        public virtual Blog Blog { get; set; }
+        public Blog Blog { get; set; }
     }
 }

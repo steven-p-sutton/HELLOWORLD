@@ -7,7 +7,7 @@ using System.Linq;
 //
 //   1. Build the model in code
 //   2. Create the db using migration
-//   3. Revise the model in code
+//   3. Revise the model in code 
 //   4. Upgrade the db using migration
 //   5. Repeat code -> upgrade steps as required
 //   6. Copy db from soiurec folder to deplyment folder before running, else exceptions will occur 
@@ -32,27 +32,32 @@ namespace HELLOWWORLD_EFCore
 
             using (var db = new Context())
             {
-                // Create and save a new Blog
-                Console.Write("Enter a name for a new Blog: ");
-                var name = Console.ReadLine();
-
-                var blog = new Blog { Name = name };
-                db.Blogs.Add(blog);
+                // Create
+                Console.WriteLine("Inserting a new blog");
+                db.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
                 db.SaveChanges();
 
-                // Display all Blogs from the database
-                var query = from b in db.Blogs
-                            orderby b.Name
-                            select b;
+                // Read
+                Console.WriteLine("Querying for a blog");
+                var blog = db.Blogs
+                    .OrderBy(b => b.BlogId)
+                    .First();
 
-                Console.WriteLine("All blogs in the database:");
-                foreach (var item in query)
-                {
-                    Console.WriteLine(item.Name);
-                }
+                // Update
+                Console.WriteLine("Updating the blog and adding a post");
+                blog.Url = "https://devblogs.microsoft.com/dotnet";
+                blog.Posts.Add(
+                    new Post
+                    {
+                        Title = "Hello World",
+                        Content = "I wrote an app using EF Core!"
+                    });
+                db.SaveChanges();
 
-                Console.WriteLine("Press any key to exit...");
-                Console.ReadKey();
+                // Delete
+                Console.WriteLine("Delete the blog");
+                db.Remove(blog);
+                db.SaveChanges();
             }
         }
     }
