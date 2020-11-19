@@ -36,7 +36,12 @@
 //                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#4-reading--writing-data
 //
 //              5. Dealing with Model Changes
-//                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#5-dealing-with-model-changes
+//                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#5-dealing-with-model-models
+//                  - Edit model classes as required
+//                  - Open NUGet Package Manager Console in Visual Studio
+//                  - Enable-Migrations
+//                  - Add-Migration <abc>
+//                  - Update-Database
 //
 //              6. Data Annotations
 //                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#6-data-annotations
