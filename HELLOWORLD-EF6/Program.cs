@@ -1,81 +1,58 @@
-﻿// Microsoft Entity Framework
-//		https://docs.microsoft.com/en-us/ef/
-
-//		Entity Framework 6
-//			https://docs.microsoft.com/en-us/ef/ef6/
-//			Get started with Entity Framework 6
-//
-//          Tutorial
-//              https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database
-//
-//              1. Create the Application
-//                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#1-create-the-application
-//              
-//                  Database is created in SQLExpress when app is run first time
-//                  (LocalDb)\MSSQLLocalDB
-//
-//                      VS2019/Server Explorer
-//                                SERVER = laptop-qr0qpgvq\localdb#ec7f3d87.master.dbo (enterd as (LocalDB)\MSSQLLocalDB
-//                      CONNECTIONSTRING = Data Source=(LocalDb)\MSSQLLocalDB;Integrated Security=True
-//                      SSMS
-//                                SERVER = LAPTOP - QR0QPGVQ\LOCALDB#631D7789
-//                                    DB = CodeFirstNewDatabaseSample.BloggingContext
-
-//                       MSSQL
-//                                    DB = LAPTOP-QR0QPGVQ
-//                      CONNECTIONSTRING = Data Source=LAPTOP-QR0QPGVQ;Integrated Security=True
-//
-//              2. Create the Model
-//                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#2-create-the-model
-//
-//              3. Create a Context
-//                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#3-create-a-context
-//
-//              4. Reading & Writing Data
-//                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#4-reading--writing-data
-//
-//              5. Dealing with Model Changes
-//                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#5-dealing-with-model-changes
-//
-//              6. Data Annotations
-//                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#6-data-annotations
-//
-//              7. Fluent API
-//                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#7-fluent-api
-//                                 
-
-using System;
+﻿using System;
 using System.Linq;
 
-namespace CodeFirstNewDatabaseSample
+// 
+// Migrations Overview - Migrstion using cmd line
+//   https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
+//
+//   1. Build the model in code
+//   2. Create the db using migration
+//   3. Revise the model in code 
+//   4. Upgrade the db using migration
+//   5. Repeat code -> upgrade steps as required
+//   6. Copy db from soiurec folder to deplyment folder before running, else exceptions will occur 
+//      (cant fins db so new blank created and tables are seen as missing, exception rised by app)
+// SQLite Viewer Download - use to view the blogging.db created by the migration
+//   https://www.systoolsgroup.com/sqlite-viewer.html
+//
+// References
+//
+//   SqliteDbContextOptionsBuilderExtensions.UseSqlite Method
+//      https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.sqlitedbcontextoptionsbuilderextensions.usesqlite?view=efcore-5.0
+//   C# (CSharp) DbContextOptionsBuilder.UseSqlite Examples
+//      https://csharp.hotexamples.com/examples/-/DbContextOptionsBuilder/UseSqlite/php-dbcontextoptionsbuilder-usesqlite-method-examples.html
+
+namespace HELLOWWORLD_EF6
 {
     class Program
     {
         static void Main(string[] args)
         {
-            using (var db = new BloggingContext())
-            {
-                // Create and save a new Blog
-                Console.Write("Enter a name for a new Blog: ");
-                var name = Console.ReadLine();
+            // Console.WriteLine("Hello World!");
 
-                var blog = new Blog { Name = name };
-                db.Blogs.Add(blog);
+            using (var db = new Context())
+            {
+                // Create
+                Console.WriteLine("Inserting a new message");
+                db.HelloWorlds.Add(new HelloWorld { Text = "Hello World !" });
                 db.SaveChanges();
 
-                // Display all Blogs from the database
-                var query = from b in db.Blogs
-                            orderby b.Name
-                            select b;
+                // Read
+                Console.WriteLine("Querying for a message");
+                var helloWorld = db.HelloWorlds
+                    .OrderBy(h => h.HelloWorldId)
+                    .First();
+                Console.WriteLine(helloWorld.Text);
 
-                Console.WriteLine("All blogs in the database:");
-                foreach (var item in query)
-                {
-                    Console.WriteLine(item.Name);
-                }
+                // Update
+                Console.WriteLine("Updating the blog and adding a post");
+                helloWorld.Text = "Hello Again World !";
+                db.SaveChanges();
 
-                Console.WriteLine("Press any key to exit...");
-                Console.ReadKey();
+                // Delete
+                Console.WriteLine("Delete the blog");
+                db.HelloWorlds.Remove(helloWorld);
+                db.SaveChanges();
             }
         }
     }
