@@ -1,18 +1,14 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.Entity;
 
-namespace HELLOWWORLD_EF6
+namespace HELLOWORLD_EF6
 {
     public class Context : DbContext
     {
-        public Context()
-            : base("name=Context")
-        {
-        }
         public DbSet<HelloWorld> HelloWorlds { get; set; }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-        }
-        //protected override void OnConfiguring(DbContextOptionsBuilder options)
-        //    => options.UseSqlite("Data Source=HelloWorld.db");
     }
 }

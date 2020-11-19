@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("HELLOWORLD-EF6")]
+[assembly: AssemblyTitle("CodeFirstNewDatabaseSample")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("HELLOWORLD-EF6")]
+[assembly: AssemblyProduct("CodeFirstNewDatabaseSample")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("fe10b93d-3ee7-4c2c-bd75-00a883e67e66")]
+[assembly: Guid("80b1b402-c2e3-46b3-93f0-ce9efda68900")]
 
 // Version information for an assembly consists of the following four values:
 //

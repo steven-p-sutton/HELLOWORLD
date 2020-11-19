@@ -1,4 +1,6 @@
-﻿
+﻿using System;
+using System.Linq;
+
 // Microsoft Entity Framework
 //		https://docs.microsoft.com/en-us/ef/
 
@@ -45,40 +47,37 @@
 //                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#7-fluent-api
 //                                 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HELLOWORLD_EF6
+namespace HELLOWWORLD_EF6
 {
     class Program
     {
         static void Main(string[] args)
         {
+            // Console.WriteLine("Hello World!");
+
             using (var db = new Context())
             {
-                // Create and save a new Blog
-                var text = "Hello World!";
-
-                var helloWorld = new HelloWorld { Text = text };
-                db.HelloWorlds.Add(helloWorld);
+                // Create
+                Console.WriteLine("Inserting a new message");
+                db.HelloWorlds.Add(new HelloWorld { Text = "Hello World !" });
                 db.SaveChanges();
 
-                // Display all Texts from the database
-                var query = from b in db.HelloWorlds
-                            orderby b.HelloWorldId
-                            select b;
+                // Read
+                Console.WriteLine("Querying for a message");
+                var helloWorld = db.HelloWorlds
+                    .OrderBy(h => h.HelloWorldId)
+                    .First();
+                Console.WriteLine(helloWorld.Text);
 
-                Console.WriteLine("All texts in the database:");
-                foreach (var item in query)
-                {
-                    Console.WriteLine(item.Text);
-                }
+                // Update
+                Console.WriteLine("Updating the blog and adding a post");
+                helloWorld.Text = "Hello Again World !";
+                db.SaveChanges();
 
-                Console.WriteLine("Press any key to exit...");
-                Console.ReadKey();
+                // Delete
+                Console.WriteLine("Delete the blog");
+                db.HelloWorlds.Remove(helloWorld);
+                db.SaveChanges();
             }
         }
     }
