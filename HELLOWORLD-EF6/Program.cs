@@ -1,26 +1,51 @@
 ﻿using System;
 using System.Linq;
 
-// 
-// Migrations Overview - Migrstion using cmd line
-//   https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
+// Microsoft Entity Framework
+//		https://docs.microsoft.com/en-us/ef/
+
+//		Entity Framework 6
+//			https://docs.microsoft.com/en-us/ef/ef6/
+//			Get started with Entity Framework 6
 //
-//   1. Build the model in code
-//   2. Create the db using migration
-//   3. Revise the model in code 
-//   4. Upgrade the db using migration
-//   5. Repeat code -> upgrade steps as required
-//   6. Copy db from soiurec folder to deplyment folder before running, else exceptions will occur 
-//      (cant fins db so new blank created and tables are seen as missing, exception rised by app)
-// SQLite Viewer Download - use to view the blogging.db created by the migration
-//   https://www.systoolsgroup.com/sqlite-viewer.html
+//          Tutorial
+//              https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database
 //
-// References
+//              1. Create the Application
+//                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#1-create-the-application
+//              
+//                  Database is created in SQLExpress when app is run first time
+//                  (LocalDb)\MSSQLLocalDB
 //
-//   SqliteDbContextOptionsBuilderExtensions.UseSqlite Method
-//      https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.sqlitedbcontextoptionsbuilderextensions.usesqlite?view=efcore-5.0
-//   C# (CSharp) DbContextOptionsBuilder.UseSqlite Examples
-//      https://csharp.hotexamples.com/examples/-/DbContextOptionsBuilder/UseSqlite/php-dbcontextoptionsbuilder-usesqlite-method-examples.html
+//                      VS2019/Server Explorer
+//                                SERVER = laptop-qr0qpgvq\localdb#ec7f3d87.master.dbo (enterd as (LocalDB)\MSSQLLocalDB
+//                      CONNECTIONSTRING = Data Source=(LocalDb)\MSSQLLocalDB;Integrated Security=True
+//                      SSMS
+//                                SERVER = LAPTOP - QR0QPGVQ\LOCALDB#631D7789
+//                                    DB = CodeFirstNewDatabaseSample.BloggingContext
+
+//                       MSSQL
+//                                    DB = LAPTOP-QR0QPGVQ
+//                      CONNECTIONSTRING = Data Source=LAPTOP-QR0QPGVQ;Integrated Security=True
+//
+//              2. Create the Model
+//                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#2-create-the-model
+//
+//              3. Create a Context
+//                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#3-create-a-context
+//
+//              4. Reading & Writing Data
+//                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#4-reading--writing-data
+//
+//              5. Dealing with Model Changes
+//                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#5-dealing-with-model-changes
+//
+//              6. Data Annotations
+//                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#6-data-annotations
+//
+//              7. Fluent API
+//                  https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database#7-fluent-api
+//                                 
 
 namespace HELLOWWORLD_EF6
 {
