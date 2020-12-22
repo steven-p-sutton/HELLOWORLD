@@ -6,6 +6,9 @@
 //			https://docs.microsoft.com/en-us/ef/ef6/
 //			Get started with Entity Framework 6
 //
+//          Connection strings and models
+//              https://docs.microsoft.com/en-us/ef/ef6/fundamentals/configuring/connection-strings?redirectedfrom=MSDN
+//
 //          Tutorial
 //              https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database
 //
