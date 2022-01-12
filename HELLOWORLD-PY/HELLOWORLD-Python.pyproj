@@ -10,7 +10,7 @@
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>HELLOWORLD-PY</Name>
+    <Name>HELLOWORLD-Python</Name>
     <RootNamespace>HELLOWORLD-PY-Console</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
